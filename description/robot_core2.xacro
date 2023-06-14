@@ -50,9 +50,22 @@
                 <!-- l b h -->
             </geometry>
             <material name="white"/>
-        </visual>        
+        </visual>      
+        <collision>            
+            <origin xyz="0.2575 0 0.0675"/>
+            <geometry>
+                
+                <box size="0.515 0.31 0.135"/> 
+            </geometry>
+        </collision>
+        <xacro:inertial_box mass="0.5" x="0.515" y="0.31" z="0.135">
+            <origin xyz="0.2575 0 0.0675" rpy="0 0 0"/>
+        </xacro:inertial_box>  
     </link>
 
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
 
   <!-- Rear LEFT WHEEL -->
   
