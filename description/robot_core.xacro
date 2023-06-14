@@ -144,7 +144,7 @@
   
 <joint name="front_right_wheel_joint" type="continuous">
     <parent link="front_right_wheel_steer"/>
-    <child link="front_left_wheel"/>
+    <child link="front_right_wheel"/>
     <origin xyz="0.360 -0.18 0" rpy="-${pi/2} 0 0"/>    
     <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
     <!-- connected with base link -->
