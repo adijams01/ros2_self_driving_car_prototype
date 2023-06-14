@@ -107,7 +107,7 @@
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
     <child link="front_wheel_steer"/>
-    <origin rpy="0 0 0" xyz="0.360 0.18 0"/>
+    <origin rpy="0 0 0" xyz="0.360 0 0"/>
   </joint>
 
 <link name="front_wheel_steer">
@@ -124,7 +124,7 @@
 <joint name="front_left_wheel_joint" type="continuous">
     <parent link="front_wheel_steer"/>
     <child link="front_left_wheel"/>
-    <origin xyz="0.360 0.18 0" rpy="-${pi/2} 0 0"/>    
+    <origin xyz="0 0.18 0" rpy="-${pi/2} 0 0"/>    
     <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
     <!-- connected with base link -->
     <axis xyz="0 0 1"/>
@@ -139,30 +139,14 @@
     </visual>
 </link>
 
-<!-- 
-<joint name="front_left_wheel_steer_joint" type="revolute">
-    <limit lower="-1" upper="1" effort="1" velocity="5"/>
-    <axis xyz="0 0 1"/>
-    <parent link="base_link"/>
-    <child link="front_left_wheel_steer"/>
-    <origin rpy="0 0 0" xyz="0.360 0.18 0"/>
-  </joint>
 
-<link name="front_left_wheel_steer">
-    <visual>
-      <geometry>
-        <cylinder length="0.01" radius="0.01"/>
-      </geometry>
-      <material name="black"/>
-    </visual>
-  </link>  -->
 
   <!-- FRONT RIGHT WHEEL -->
   
 <joint name="front_right_wheel_joint" type="continuous">
     <parent link="front_wheel_steer"/>
     <child link="front_right_wheel"/>
-    <origin xyz="0.360 -0.18 0" rpy="-${pi/2} 0 0"/>    
+    <origin xyz="0 -0.18 0" rpy="-${pi/2} 0 0"/>    
     <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
     <!-- connected with base link -->
     <axis xyz="0 0 -1"/>
@@ -177,21 +161,6 @@
     </visual>
 </link>
   
-<!-- <joint name="front_right_wheel_steer_joint" type="revolute">
-    <limit lower="-1" upper="1" effort="1" velocity="5"/>
-    <axis xyz="0 0 1"/>
-    <parent link="base_link"/>
-    <child link="front_right_wheel_steer"/>
-    <origin rpy="0 0 0" xyz="0.360 -0.18 0"/>
-  </joint>
 
-<link name="front_right_wheel_steer">
-    <visual>
-      <geometry>
-        <cylinder length="0.01" radius="0.01"/>
-      </geometry>
-      <material name="black"/>
-    </visual>
-  </link>  -->
 
     </robot>
