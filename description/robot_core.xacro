@@ -40,10 +40,10 @@
 
     <link name="chassis">
         <visual>
-            <origin xyz="0.055 0 0.0485"/>
+            <origin xyz="0.2575 0 0.0675"/>
             <geometry>
                 <box size="0.515 0.31 0.135"/> 
-                <!-- l bh -->
+                <!-- l b h -->
             </geometry>
             <material name="white"/>
         </visual>        
@@ -54,7 +54,9 @@
 <joint name="rear_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="rear_left_wheel"/>
-    <origin xyz="0 0.155 0" rpy="-${pi/2} 0 0"/>
+    <origin xyz="0 0.18 0" rpy="-${pi/2} 0 0"/>    
+    <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
+    <!-- connected with base link -->
     <axis xyz="0 0 1"/>
 </joint>
 
