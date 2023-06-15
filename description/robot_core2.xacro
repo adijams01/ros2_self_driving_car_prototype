@@ -51,16 +51,13 @@
             </geometry>
             <material name="white"/>
         </visual>      
-        <!-- <collision>            
+        <collision>
             <origin xyz="0.2575 0 0.0675"/>
             <geometry>
-                
-                <box size="0.515 0.31 0.135"/> 
+                <box size="0.515 0.31 0.097"/> 
+                <!-- l b h -->
             </geometry>
-        </collision>
-        <xacro:inertial_box mass="0.5" x="0.515" y="0.31" z="0.135">
-            <origin xyz="0.2575 0 0.0675" rpy="0 0 0"/>
-        </xacro:inertial_box>   -->
+        </collision>      
     </link>
 
     <!-- <gazebo reference="chassis">
@@ -79,18 +76,19 @@
 
 <link name="upper_chassis">
     <visual>
-<<<<<<< HEAD
-        <origin xyz="0.2575 0 0.097" rpy="0 0 0"/>
-=======
         <origin xyz="0 0 0.038" rpy="0 0 0"/>
->>>>>>> 6796d58cfbd689a60f0606a5cd9eb66f05d851cd
         <geometry>
             <box size="0.263 0.31 0.04"/>
         </geometry>
         <material name="red"/>
     </visual>
+    <collision>
+        <origin xyz="0 0 0.038" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.263 0.31 0.04"/>
+        </geometry>
+    </collision>
 </link>
-
 
   <!-- Rear LEFT WHEEL -->
   
@@ -110,6 +108,12 @@
         </geometry>
         <material name="blue"/>
     </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        
+    </collision>
 </link>
     
   
@@ -132,6 +136,11 @@
         </geometry>
         <material name="blue"/>
     </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
 </link>
     
 
@@ -175,13 +184,18 @@
         </geometry>
         <material name="blue"/>
     </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
 </link>
 
 <joint name="front_left_wheel_steer_joint" type="revolute">
     <limit lower="-1" upper="1" effort="1" velocity="5"/>
     <axis xyz="0 0 1"/>
     <parent link="base_link"/>
-    <child link="front__left_wheel_steer"/>
+    <child link="front_left_wheel_steer"/>
     <origin rpy="0 0 0" xyz="0.360 0 0"/>
   </joint>
 
@@ -192,6 +206,11 @@
       </geometry>
       <material name="black"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+    </collision>
   </link> 
 
 
@@ -213,6 +232,11 @@
         </geometry>
         <material name="blue"/>
     </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
 </link>
   
 
@@ -231,6 +255,11 @@
       </geometry>
       <material name="black"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+    </collision>
   </link> 
 
     </robot>
