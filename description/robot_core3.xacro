@@ -1,0 +1,287 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <!-- <xacro:include filename="inertial_macros.xacro"/> -->
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+     <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    
+    <!-- REAR BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+
+    
+
+
+    <!-- CHASSIS LINK -->
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.2575 0 0.0675"/>
+            <geometry>
+                <box size="0.515 0.31 0.097"/> 
+                <!-- l b h -->
+            </geometry>
+            <material name="white"/>
+        </visual>      
+        <collision>
+            <origin xyz="0.2575 0 0.0675"/>
+            <geometry>
+                <box size="0.515 0.31 0.097"/> 
+                <!-- l b h -->
+            </geometry>
+        </collision>      
+    </link>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+
+
+    <!-- UPPER CHASSIS LINK -->
+
+<joint name="upper_chassis_joint" type="fixed">
+    <parent link="chassis"/>
+    <child link="upper_chassis"/>
+    <origin xyz="0.235 0 0.097"/>
+</joint>
+
+<link name="upper_chassis">
+    <visual>
+        <origin xyz="0 0 0.038" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.263 0.31 0.04"/>
+        </geometry>
+        <material name="red"/>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0.038" rpy="0 0 0"/>
+        <geometry>
+            <box size="0.263 0.31 0.04"/>
+        </geometry>
+    </collision>
+</link>
+
+    <gazebo reference="upper_chassis">
+        <material>Gazebo/Red</material>
+    </gazebo>
+  <!-- Rear LEFT WHEEL -->
+  
+<joint name="rear_left_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_left_wheel"/>
+    <origin xyz="0 0.18 0.0194" rpy="-${pi/2} 0 0"/>    
+    <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
+    <!-- connected with base link -->
+    <axis xyz="0 0 1"/>
+</joint>
+
+<link name="rear_left_wheel">
+    <visual>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        
+    </collision>
+</link>
+    
+    <gazebo reference="rear_left_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+  
+
+  <!-- Rear RIGHT WHEEL -->
+  
+<joint name="rear_right_wheel_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="rear_right_wheel"/>
+    <origin xyz="0 -0.18 0.0194" rpy="-${pi/2} 0 0"/>    
+    <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
+    <!-- connected with base link -->
+    <axis xyz="0 0 -1"/>
+</joint>
+
+<link name="rear_right_wheel">
+    <visual>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
+</link>
+    
+
+    <gazebo reference="rear_right_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+  
+
+<!-- FRONT -->
+
+
+
+<!-- <joint name="front_wheel_steer_joint" type="revolute">
+    <limit lower="-1" upper="1" effort="1" velocity="5"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_wheel_steer"/>
+    <origin rpy="0 0 0" xyz="0.360 0 0"/>
+  </joint>
+
+<link name="front_wheel_steer">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+  </link>  -->
+
+  <!-- FRONT LEFT WHEEL -->
+  
+<joint name="front_left_wheel_joint" type="continuous">
+    <parent link="front_left_wheel_steer"/>
+    <child link="front_left_wheel"/>
+    <origin xyz="0 0.18 0.0194" rpy="-${pi/2} 0 0"/>    
+    <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
+    <!-- connected with base link -->
+    <axis xyz="0 0 1"/>
+</joint>
+
+<link name="front_left_wheel">
+    <visual>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
+</link>
+    <gazebo reference="front_left_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+<joint name="front_left_wheel_steer_joint" type="revolute">
+    <limit lower="-1" upper="1" effort="1" velocity="5"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_left_wheel_steer"/>
+    <origin rpy="0 0 0" xyz="0.360 0 0"/>
+  </joint>
+
+<link name="front_left_wheel_steer">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link> 
+
+    <gazebo reference="front_left_wheel_steer">
+        <material>Gazebo/Black</material>
+    </gazebo>
+
+  <!-- FRONT RIGHT WHEEL -->
+  
+<joint name="front_right_wheel_joint" type="continuous">
+    <parent link="front_right_wheel_steer"/>
+    <child link="front_right_wheel"/>
+    <origin xyz="0 -0.18 0.0194" rpy="-${pi/2} 0 0"/>    
+    <!-- y = b + thickness of wheel/2 + 0.5(mm) -->
+    <!-- connected with base link -->
+    <axis xyz="0 0 -1"/>
+</joint>
+
+<link name="front_right_wheel">
+    <visual>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+        <material name="blue"/>
+    </visual>
+    <collision>
+        <geometry>
+            <cylinder length="0.04" radius="0.0485" />
+        </geometry>
+    </collision>
+</link>
+  
+    <gazebo reference="front_right_wheel">
+        <material>Gazebo/Blue</material>
+    </gazebo>
+
+<joint name="front_right_wheel_steer_joint" type="revolute">
+    <limit lower="-1" upper="1" effort="1" velocity="5"/>
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_right_wheel_steer"/>
+    <origin rpy="0 0 0" xyz="0.360 0 0"/>
+  </joint>
+
+<link name="front_right_wheel_steer">
+    <visual>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.01" radius="0.01"/>
+      </geometry>
+    </collision>
+  </link> 
+
+    <gazebo reference="front_right_wheel_steer">
+        <material>Gazebo/Black</material>
+    </gazebo>
+    </robot>
